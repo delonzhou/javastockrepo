@@ -3,7 +3,7 @@
 xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="3">
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="4">
 	<servlet>
 		<servlet-name>Installation</servlet-name>
 		<servlet-class>com.oriborohov.javacourse.InstallationServlet</servlet-class>
@@ -12,6 +12,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="3">
 		<servlet-name>Installation</servlet-name>
 		<url-pattern>/installation</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>Calculate</servlet-name>
 		<servlet-class>com.oriborohov.javacourse.Calculate</servlet-class>
@@ -20,6 +21,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="3">
 		<servlet-name>Calculate</servlet-name>
 		<url-pattern>/Calculate</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>StockDetailsServlet</servlet-name>
+		<servlet-class>com.oriborohov.javacourse.StockDetailsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StockDetailsServlet</servlet-name>
+		<url-pattern>/StockDetails</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
