@@ -1,35 +1,38 @@
 package com.oriborohov.javacourse.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.oriborohov.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
+
 public class Stock {
-	
-	private static final int BUY = 0;
-	private static final int SELL = 1;
-	private static final int REMOVE = 2;
-	private static final int HOLD = 3;
 	
 	private String symbol;
 	private float ask;
 	private float bid;
 	private Date date;
-	private int recommendation;
+	private ALGO_RECOMMENDATION recommendation;
 	private int stockQuantity;
 	
-	public Stock(String symbol, float ask, float bid, Date date) { // stock constructor
+	// Constructor
+	public Stock(String symbol, float ask, float bid, Date date, int stockQuantity) 
+	{
+		super();
 		this.symbol = symbol;
 		this.ask = ask;
 		this.bid = bid;
 		this.date = date;
+		this.stockQuantity = stockQuantity;
 	}
-
-	public Stock(Stock copyStock){ // stock copy constructor
-		this.symbol = copyStock.getSymbol();
-		this.ask = copyStock.getAsk();
-		this.bid = copyStock.getBid();
-		this.date = copyStock.getDate();
-		this.recommendation = copyStock.getRecommendation();
-		this.stockQuantity = copyStock.getStockQuantity();
+	
+	// Copy Constructor
+	public Stock(Stock stockToCopy) 
+	{
+		this(new String(stockToCopy.getSymbol()), 
+			 stockToCopy.getAsk(), 
+			 stockToCopy.getBid(), 
+			 new Date(stockToCopy.getDate().getTime()),
+			 stockToCopy.getStockQuantity());
 	}
 	
 	public String getSymbol() {
@@ -64,14 +67,6 @@ public class Stock {
 		this.date = date;
 	}
 	
-	public int getRecommendation() {
-		return recommendation;
-	}
-
-	public void setRecommendation(int recommendation) {
-		this.recommendation = recommendation;
-	}
-	
 	public int getStockQuantity() {
 		return stockQuantity;
 	}
@@ -80,8 +75,15 @@ public class Stock {
 		this.stockQuantity = stockQuantity;
 	}
 
-	public String getHtmlDescription(){ // prints stock
-		return "<b>Symbol</b> = " + getSymbol() + ", <b>Ask</b> = " + getAsk() + ", <b>Bid</b> = " + getBid() +
-				", <b>Date</b> = " + getDate().getMonth() + "/" + getDate().getDate() + "/" +(1900 + getDate().getYear())+"<br>";
+	public String getHtmlDescription()
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String dateToStr = simpleDateFormat.format(getDate());
+
+		return(new String("<b>Stock Symbol: </b>" + getSymbol() +
+						  " <b>Bid: </b>" + getBid() +
+						  " <b>Ask: </b>" + getAsk() + 
+						  " <b>Date: </b>" + dateToStr +
+						  " <b>Quantity: </b>" + getStockQuantity()));
 	}
 }
